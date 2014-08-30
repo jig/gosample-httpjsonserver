@@ -37,10 +37,13 @@ func (Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	switch r.URL.Path {
 	case "/sample1":
+		w.WriteHeader(http.StatusOK)
 		_, err = io.WriteString(w, `{"value": "This is sample 1"}`)
 	case "/sample2":
+		w.WriteHeader(http.StatusOK)
 		_, err = io.WriteString(w, `{"value": "This is sample 2"}`)
 	default:
+		w.WriteHeader(http.StatusNotFound)
 		_, err = io.WriteString(w, `{"error": "Path not found"}`)
 	}
 
